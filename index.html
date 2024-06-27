@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ-APP</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    height: 100vh;
+    width: 100%;
+    background-color: #b8c6db;
+    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz-cont {
+    width: 600px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.quiz-header {
+    padding: 4rem;
+}
+
+.question {
+    text-align: center;
+    padding: 1rem;
+    margin: 0;
+    font-size: 2rem;
+}
+
+.quiz-cont ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.quiz-cont ul li {
+    font-size: 1.2rem;
+    margin: 1.5rem 0;
+}
+
+.quiz-cont ul li label {
+    cursor: pointer;
+}
+
+.quiz-cont button {
+    background-color: #8e44ad;
+    color: #fff;
+    border: none;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-family: inherit;
+    padding: 1.3rem;
+}
+
+.quiz-cont button:hover {
+    background-color: #732d91;
+}
+
+.quiz-cont button:focus {
+    outline: none;
+    background-color: #5e3370;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 992px) {
+    .quiz-cont {
+        width: 80%;
+    }
+
+    .quiz-header {
+        padding: 3rem;
+    }
+
+    .question {
+        font-size: 1.8rem;
+    }
+
+    .quiz-cont ul li {
+        font-size: 1.1rem;
+        margin: 1rem 0;
+    }
+
+    .quiz-cont button {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .quiz-cont {
+        width: 90%;
+    }
+
+    .quiz-header {
+        padding: 2.5rem;
+    }
+
+    .question {
+        font-size: 1.6rem;
+    }
+
+    .quiz-cont ul li {
+        font-size: 1rem;
+        margin: 0.8rem 0;
+    }
+
+    .quiz-cont button {
+        font-size: 1.1rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .quiz-cont {
+        width: 95%;
+    }
+
+    .quiz-header {
+        padding: 2rem;
+    }
+
+    .question {
+        font-size: 1.4rem;
+    }
+
+    .quiz-cont ul li {
+        font-size: 0.9rem;
+        margin: 0.6rem 0;
+    }
+
+    .quiz-cont button {
+        font-size: 1rem;
+        padding: 0.6rem;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="quiz-cont">
+            <div class="quiz-header">
+                <h2 class="question">Question text</h2>
+                <ul>
+                    <li>
+                        <input type="radio" name="answer" id="a" class="answer">
+                        <label for="a" id="a-text">Question</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer" id="b" class="answer">
+                        <label for="b" id="b-text">Question</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer" id="c" class="answer">
+                        <label for="c" id="c-text">Question</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="answer" id="d" class="answer">
+                        <label for="d" id="d-text">Question</label>
+                    </li>
+                </ul>
+            </div>
+            <button class="submit">Submit</button>
+        </div>
+    </div>
+
+
+    <script>
+        let quizdata = [
+            {
+                question: "Which language run in a web browser?",
+                a: "Java",
+                b: "C",
+                c: "Python",
+                d: "JavaScript",
+                correct: "d",
+            },
+            {
+                question: "What does CSS stand for?",
+                a: "Central Style Sheets",
+                b: "Cascading Style Sheets",
+                c: "Cascading Simple Sheets",
+                d: "Cars SUVs Sailboats",
+                correct: "b",
+            },
+            {
+                question: "What does HTML stand for?",
+                a: "Hypertext Markup Language",
+                b: "Hypertext Markdown Language",
+                c: "Hyperloop Machine Language",
+                d: "Helicopters Terminals Motorboats Lamborginis",
+                correct: "a",
+            },
+            {
+                question: "What year was JavaScript launched?",
+                a: "1996",
+                b: "1995",
+                c: "1994",
+                d: "none of the above",
+                correct: "b",
+            },
+
+        ]
+        console.log(quizdata);
+
+        let quizcont = document.querySelector('.quiz-cont')
+        let question = document.querySelector('.question')
+        let answer = document.querySelectorAll('.answer')
+        let a_text = document.getElementById('a-text')
+        let b_text = document.getElementById('b-text')
+        let c_text = document.getElementById('c-text')
+        let d_text = document.getElementById('d-text')
+        let submit = document.querySelector('.submit')
+
+        let currentQuiz = 0
+        let score = 0
+
+        loadQuiz()
+
+        function loadQuiz() {
+            deselectAnswers()
+
+            let currentQuizData = quizdata[currentQuiz]
+            console.log(question);
+            question.innerHTML = currentQuizData.question
+            a_text.innerHTML = currentQuizData.a
+            b_text.innerHTML = currentQuizData.b
+            c_text.innerHTML = currentQuizData.c
+            d_text.innerHTML = currentQuizData.d
+        }
+
+        function deselectAnswers() {
+            answer.forEach(answer1 => answer1.checked = false)
+        }
+
+        function getSelected() {
+            let quizanswers
+
+            answer.forEach(answer1 => {
+                if (answer1.checked) {
+                    quizanswers = answer1.id
+                }
+            })
+            return quizanswers
+            console.log(quizanswers);
+        }
+
+        submit.addEventListener('click', function () {
+            let quizanswers = getSelected()
+            if (quizanswers) {
+                if (quizanswers = quizdata[currentQuiz].correct) {
+                    score++
+                }
+                currentQuiz++
+                if (currentQuiz < quizdata.length) {
+                    loadQuiz()
+                }
+                else {
+                    quizcont.innerHTML = `<h2>You answerd ${score}/${quizdata.length}question correctly<h2>
+                <button onclick="location.reload()">Reload</button>
+                        `
+                }
+            }
+        })
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>
